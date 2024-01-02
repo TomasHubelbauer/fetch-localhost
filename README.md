@@ -22,7 +22,7 @@ tab and run this:
 fetch('http://localhost:3000').then(response => response.text()).then(text => console.log(text));
 ```
 
-But your `fetch` request is still subject to CORS.. You'll get this error:
+Your `fetch` call is still subject to CORS so you'll get this error:
 
 ```
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at
