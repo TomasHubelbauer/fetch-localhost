@@ -34,11 +34,28 @@ To fix this, make sure your local server serves the appropriate ACAO header:
 ```javascript
 Bun.serve({
   fetch(req) {
+    const headers = { 'Access-Control-Allow-Origin': 'https://www.google.com' };
+    return new Response("Bun!", { headers });
+  },
+});
+```
+
+With this, your Google tab can now make `fetch` calls to your `localhost` server.
+Other websites won't be able to as they won't pass the CORS check.
+
+Change this to your web app's orgin and now your live web app can hit the users'
+local server and prompt them to install and start one if the web app expects
+that to work and the user hasn't done it.
+
+To allow any and all websites to call your localhost server, use this:
+
+```javascript
+Bun.serve({
+  fetch(req) {
     const headers = { 'Access-Control-Allow-Origin': '*' };
     return new Response("Bun!", { headers });
   },
 });
 ```
 
-Now your live web app can hit the users' local server and prompt them to install and start
-one if the web app expects that to work and the user hasn't done it.
+**This is not a good idea.**
